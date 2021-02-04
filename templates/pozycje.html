@@ -1,0 +1,45 @@
+<div class="starter-template">
+        <script type="text/javascript">
+          function TableActions (value, row, index) {
+    return [
+        '<a class="danger remove" href="controller/deletePosition.php?id='+row.ID+'" title="Remove">',
+        '<i class="glyphicon glyphicon-trash"></i>',
+        '</a>'
+    ].join('');
+}
+        </script> 
+       <h1>Pozycje</h1>
+       <table class="table table-hover" data-toggle="table" data-show-pagination-switch="true" data-url="controller/getPositions.php" data-pagination="true" data-search="true">
+         <thead>
+          <tr>
+          <th data-field="ID">Id</th>
+          <th data-field="netto">Wartość netto</th>
+          <th data-field="vat">Stawka VAT (%)</th>
+          <th data-field="opis">Opis</th>
+          <th data-formatter="TableActions">Usuń*</th>
+          </tr>
+        </thead>
+       </table>
+       *Niemożliwe jest usunięcie pozycji, która jest zawarta w pewnej fakturze.
+
+       <h1>Dodaj pozycję</h1>
+       <form action="controller/insertPosition.php" method="GET">
+        <div class="form-group">
+        <label>Wartość netto</label>
+        <input name="netto" type="text" class="form-control"  placeholder="Wprowadź wartość netto">
+        </div>
+
+          <div class="form-group">
+        <label>Stawka VAT (%)</label>
+        <input name="vat" type="text" class="form-control" aria-describedby="vatHelp" placeholder="Wprowadź stawkę VAT">
+        <small id="vatHelp" class="form-text text-muted">Na przykład: 8</small>
+        </div>
+
+        <div class="form-group">
+        <label>Opis</label>
+        <input name="opis" type="text" class="form-control" placeholder="Wprowadź opis">
+        </div>
+
+         <button type="submit" class="btn btn-primary">Dodaj</button>
+      </form>
+</div>

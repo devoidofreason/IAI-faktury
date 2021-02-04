@@ -1,0 +1,105 @@
+<div class="starter-template">
+  <script type="text/javascript">
+          function TableActions (value, row, index) {
+    return [
+        '<a class="danger remove" href="controller/deleteFaktura.php?id='+row.ID+'">',
+        '<i class="glyphicon glyphicon-trash"></i>',
+        '</a>'
+    ].join('');
+}
+function TableActions1 (value, row, index) {
+    return [
+        '<a class="like" href="controller/printFaktura.php?id='+row.ID+'">',
+        '<i class="glyphicon glyphicon-eye-open"></i>',
+        '</a> ',
+    ].join('');
+}
+function TableActions2 (value, row, index) {
+    return [
+        '<input name="pozycje['+row.ID+']" type="text" class="form-control" placeholder="Wprowadź ilość (pusto - 0)">',
+    ].join('');
+}
+        </script>
+	<h1>Faktury</h1>
+  <table class="table table-hover" data-toggle="table" data-url="controller/getFaktury.php" data-search="true" data-toggle="table" data-pagination="true">
+    <thead>
+      <tr>
+      <th data-field="ID">Id</th>
+      <th data-field="imie">Imię</th>
+      <th data-field="nazwisko">Nazwisko</th>
+      <th data-field="adres">Adres</th>
+      <th data-field="kod">Kod</th>
+      <th data-field="miasto">Miasto</th>
+      <th data-field="nip">NIP</th>
+      <th data-field="telefon">Telefon</th>
+      <th data-field="email">e-mail</th>
+      <th data-field="data">Data</th>
+      <th data-formatter="TableActions">Usuń</th>
+      <th data-formatter="TableActions1">Pogląd</th>
+      </tr>
+    </thead>
+  </table>
+
+  <h1>Wprowadź fakturę</h1>
+  <br>
+  <h1>Dane nabywcy</h1>
+    <form action="controller/insertFaktura.php" method="GET">
+
+        <div class="form-group">
+        <label>Imię</label>
+        <input name="imie" type="text" class="form-control"  placeholder="Wprowadź imię">
+        </div>
+
+        <div class="form-group">
+        <label>Nazwisko</label>
+        <input name="nazwisko" type="text" class="form-control" placeholder="Wprowadź nazwisko">
+        </div>
+
+        <div class="form-group">
+        <label>Adres</label>
+        <input name="adres" type="text" class="form-control" aria-describedby="adresHelp" placeholder="Wprowadź adres (ulica, nr lokalu)">
+        <small id="adresHelp" class="form-text text-muted">Na przykład: ul. Uliczna 5</small>
+        </div>
+
+        <div class="form-group">
+        <label>Kod pocztowy</label>
+        <input name="kod" type="text" class="form-control" aria-describedby="kodHelp" placeholder="Wprowadź kod">
+         <small id="kodHelp" class="form-text text-muted">Na przykład: 70-786</small>
+        </div>
+
+        <div class="form-group">
+        <label>Miasto</label>
+        <input name="miasto" type="text" class="form-control" placeholder="Wprowadź miasto">
+        </div>
+
+        <div class="form-group">
+        <label>NIP</label>
+        <input name="nip" type="text" class="form-control" placeholder="Wprowadź NIP">
+        </div>
+
+        <div class="form-group">
+        <label>Telefon</label>
+        <input name="telefon" type="text" class="form-control" placeholder="Wprowadź telefon">
+        </div>
+
+        <div class="form-group">
+        <label>E-mail</label>
+        <input name="email" type="email" class="form-control" placeholder="Wprowadź e-mail">
+        </div>
+
+         <h1>Pozycje</h1>
+        <table class="table table-hover" data-toggle="table" data-show-pagination-switch="true" data-url="controller/getPositions.php" data-pagination="true" data-search="true">
+         <thead>
+          <tr>
+          <th data-field="ID">Id</th>
+          <th data-field="netto">Wartość netto</th>
+          <th data-field="vat">Stawka VAT (%)</th>
+          <th data-field="opis">Opis</th>
+          <th data-formatter="TableActions2">Ilość</th>
+          </tr>
+        </thead>
+       </table>
+
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+      </form>
+</div>
